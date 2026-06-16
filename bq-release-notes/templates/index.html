@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BigQuery Release Notes Reader</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Main Application Header -->
+        <header>
+            <div class="brand-section">
+                <div class="logo-icon">BQ</div>
+                <div class="brand-details">
+                    <h1>BigQuery Release Hub</h1>
+                    <p>Live, real-time Google Cloud BigQuery release updates</p>
+                </div>
+            </div>
+            
+            <div class="controls-section">
+                <!-- Status dashboard -->
+                <div class="stats-bar">
+                    <div class="stat-item">
+                        <span class="stat-dot total"></span>
+                        <span id="stat-total">0</span> Total
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-dot feature"></span>
+                        <span id="stat-features">0</span> Features
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-dot issue"></span>
+                        <span id="stat-issues">0</span> Issues
+                    </div>
+                </div>
+                
+                <!-- Refresh action button -->
+                <button id="btn-refresh" class="btn-primary">
+                    <svg class="spinner" id="refresh-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+                    </svg>
+                    <span id="btn-text">Refresh</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Feed Grid -->
+        <main id="releases-container">
+            <!-- Loading State Placeholder -->
+            <div class="loading-state">
+                <svg class="spinner" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+                </svg>
+                <p>Loading latest BigQuery release notes...</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Twitter Share Composer Modal -->
+    <div class="modal-overlay" id="tweet-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Draft Tweet Update</h3>
+                <button class="btn-close" id="btn-close-modal">&times;</button>
+            </div>
+            
+            <div class="composer-box">
+                <textarea class="tweet-textarea" id="tweet-text" placeholder="What's happening in BigQuery?"></textarea>
+                <div class="composer-footer">
+                    <span>Compose your tweet preview</span>
+                    <span class="char-counter" id="char-count">280</span>
+                </div>
+            </div>
+            
+            <button class="btn-share-twitter" id="btn-post-tweet">
+                <!-- Twitter SVG Icon -->
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+                Share on X / Twitter
+            </button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
